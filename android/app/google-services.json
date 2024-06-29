@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "990219204899",
+    "project_id": "travel-login-72e1a",
+    "storage_bucket": "travel-login-72e1a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:990219204899:android:056904802bee38832a7496",
+        "android_client_info": {
+          "package_name": "com.exploreandtrip.travel"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA6IAZb2HZtgprZ1oV_TSgXuVdJZoVtD9I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
