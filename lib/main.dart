@@ -10,6 +10,7 @@ import 'package:travel/core/utils/app_controller.dart';
 import 'package:travel/core/utils/app_routes.dart';
 import 'package:travel/core/utils/app_theme.dart';
 import 'package:travel/core/utils/app_theme_controller.dart';
+import 'package:travel/data/service/Authcontroller.dart';
 import 'package:travel/data/service/app_setting.dart';
 import 'package:travel/pages/Screen/Plane.dart';
 import 'package:travel/pages/Screen/ReviewScreen.dart';
@@ -72,7 +73,7 @@ Future<void> main() async {
   //       projectId: "travelapp-cbdd5",
   //     ))
   //     : await Firebase.initializeApp();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp().then((value) => Get.put(AuthController()),);
   await initService();
   runApp(MyApp());
 }

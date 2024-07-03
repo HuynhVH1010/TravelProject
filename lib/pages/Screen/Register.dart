@@ -1,10 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:travel/constant/Connect.dart';
+import 'package:travel/data/service/Authcontroller.dart';
 import 'package:travel/data/service/Connection.dart';
 import 'package:travel/pages/Screen/LoginManlam.dart';
 //import 'package:travel/database/sqlite.dart';
 import 'package:travel/database/Users.dart';
+
+import '../detail_place_page.dart';
 //import 'package:travel/service/Connection.dart';
 
 
@@ -29,7 +33,7 @@ class _RegisterState extends State<Register> {
   //final _showPass = true;
   RxBool _showPass = true.obs;
   RxBool _showPassRe = true.obs;
-
+  final controller = AuthController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,37 +69,6 @@ class _RegisterState extends State<Register> {
                     children: [
                       SizedBox(
                         height: 13,
-                      ),
-                      Container(
-                        width: 350,
-                        child: TextFormField(
-                          autofocus: true,
-                          controller: _username,
-                          decoration: InputDecoration(
-                              suffixIcon: Icon(Icons.account_circle_rounded),
-                              label: Text(
-                                'Tên',
-                                style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black),
-                              ),
-                              contentPadding: EdgeInsets.all(15),
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(30),
-                                  borderSide: BorderSide(
-                                      width: 2,
-                                      style: BorderStyle.solid,
-                                      color: Colors.black
-                                  )
-                              )
-                          ),
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return "Vui lòng nhập tên";
-                            }
-                          },
-                        ),
                       ),
                       SizedBox(height: 13),
                       Container(
@@ -212,32 +185,31 @@ class _RegisterState extends State<Register> {
                               padding: EdgeInsets.symmetric(horizontal: 100,vertical: 15),
                           ),
                           onPressed: () async {
-                            setState(() {
-                              _futureAccount = DataService().Register(
-                                  _username.text,
-                                  _password.text,
-                                  _email.text,
-                                  _phonenumber.text,
-                                  _sex.text);
-                            });
-                            // if (isCheck != false) {
-                            //   try {
-                            //     await controller.RegiterUser(
-                            //             context: context,
-                            //             email: _email.text,
-                            //             password: _password.text)
-                            //         .then(
-                            //       (value) {
-                            //         VxToast.show(context,
-                            //             msg: "Sign up Successfully");
-                            //         Get.offAll(() => MyInformation());
-                            //       },
-                            //     );
-                            //   } catch (e) {
-                            //     firebase_auth.signOut();
-                            //     VxToast.show(context, msg: e.toString());
-                            //   }
-                            // }
+                            // setState(() {
+                            //   _futureAccount = DataService().Register(
+                            //       _username.text,
+                            //       _password.text,
+                            //       _email.text,
+                            //       _phonenumber.text,
+                            //       _sex.text);
+                            // });
+
+                              try {
+                                await controller.RegiterUser(
+                                        context: context,
+                                        email: _email.text,
+                                        password: _password.text)
+                                    .then(
+                                  (value) {
+
+                                    Get.offAll(() => MyInformation());
+                                  },
+                                );
+                              } catch (e) {
+                                firebase_auth.signOut();
+
+                              }
+
                           },
 
                           // onPressed: (){

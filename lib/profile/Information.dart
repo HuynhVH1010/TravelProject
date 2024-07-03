@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:travel/pages/Screen/Setting.dart';
 import 'package:travel/pages/dashboard/dashboard_controller.dart';
+import 'package:travel/pages/dashboard/dashboard_page.dart';
 import 'package:travel/pages/favorite_page.dart';
 import 'package:travel/profile/Profile.dart';
 
@@ -18,11 +19,6 @@ class _InformationState extends State<Information> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-            onPressed: (){
-              Get.to(FavoritePage());
-            },
-            icon: Icon(CupertinoIcons.arrow_left), color: Colors.black),
         backgroundColor: Colors.yellow,
         title: Text(
           'Thông tin chi tiết',

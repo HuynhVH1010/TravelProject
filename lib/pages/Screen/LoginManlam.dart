@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -25,8 +27,8 @@ class _MyLoginState extends State<MyLogin> {
   // final FirebaseDatabase _database = FirebaseDatabase.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
   var controller = Get.put(AuthController());
-  final _user = TextEditingController();
-  final _pass = TextEditingController();
+  final _email = TextEditingController();
+  final _password = TextEditingController();
   final _key = GlobalKey<FormState>();
   RxBool isVisible = false.obs;
   bool isLoginTrue = false;
@@ -76,8 +78,8 @@ class _MyLoginState extends State<MyLogin> {
   Future signIn() async {
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: _user.text.trim(),
-          password: _pass.text.trim());
+          email: _email.text.trim(),
+          password: _password.text.trim());
       Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => DashboardPage()));
       print("Đăng nhập thành công ");
     } on FirebaseAuthException catch (e) {
@@ -110,8 +112,8 @@ class _MyLoginState extends State<MyLogin> {
 
   @override
   void dispose() {
-    _user.dispose();
-    _pass.dispose();
+    _email.dispose();
+    _password.dispose();
     super.dispose();
   }
 
@@ -126,6 +128,7 @@ class _MyLoginState extends State<MyLogin> {
   //     });
   //   }
   // }
+
 
 
   @override
@@ -168,7 +171,7 @@ class _MyLoginState extends State<MyLogin> {
                         Container(
                           width: 350,
                           child: TextFormField(
-                            controller: _user,
+                            controller: _email,
                             decoration: InputDecoration(
                                 suffixIcon: Icon(Icons.account_circle_rounded),
                                 label: Text(
@@ -201,7 +204,7 @@ class _MyLoginState extends State<MyLogin> {
                           child:
                           Obx(() => TextFormField(
                             obscureText: isVisible.value,
-                            controller: _pass,
+                            controller: _password,
                             decoration: InputDecoration(
                                 suffixIcon: IconButton(
                                     onPressed: () {
@@ -251,65 +254,79 @@ class _MyLoginState extends State<MyLogin> {
                         ),
                         SizedBox(height: 10),
                         Container(
-                          child:
-                          ElevatedButton(
-                            style: ElevatedButton.styleFrom(
+                          child: ElevatedButton(
+                              onPressed: signIn,
+                              style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.yellow,
                                 shape: StadiumBorder(),
                                 padding: EdgeInsets.symmetric(horizontal: 90,vertical: 15)
-                            ),
-                            onPressed:
-                                () async {
-                              await controller.LoginUser(context: context).then((value) {
-                                if (value != null) {
-
-                                  Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => DashboardPage()));
-                                } else {
-                                  showDialog(
-                                    barrierDismissible: false,
-                                    context: context,
-                                    builder: (context) => WillPopScope(
-                                      child: AlertDialog(
-                                        title: Text("Thông báo"),
-                                        content: Text("Email hoặc mật khẩu không đúng"),
-                                        actions: [
-                                          Container(
-                                            child: ElevatedButton(
-                                              onPressed: (){
-                                                Navigator.pop(context);
-                                              },
-                                              child: Text(
-                                                'OK',
-                                                style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontWeight: FontWeight.bold
-                                                ),
-                                              ),
-                                              style: ElevatedButton.styleFrom(
-                                                  backgroundColor: Colors.yellow
-                                              ),
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                      onWillPop: () async => false,
-                                    ),
-                                  );
-                                }
-                              });
-                            },
+                              ),
                             child: Text(
-                              'Đăng nhập',
+                                'Đăng nhập',
                               style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black87),
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20,
+                                color: Colors.black87
+                              ),
                             ),
-                          ),
+                              ),
+
                           // ElevatedButton(
-                          //   onPressed: signIn,
-                          //   child: Text('Đăng nhập'),
-                          // ),
+                          //   style: ElevatedButton.styleFrom(
+                          //       backgroundColor: Colors.yellow,
+                          //       shape: StadiumBorder(),
+                          //       padding: EdgeInsets.symmetric(horizontal: 90,vertical: 15)
+                          //   ),
+                          //   onPressed:
+                          //       () async {
+                          //     await controller.LoginUser(context: context).then((value) {
+                          //       if (value != null) {
+                          //         //VxToast.show(context, msg: "Login Successfully");
+                          //         Get.offAll(() => DashboardPage());
+                          //         //Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => DashboardPage()));
+                          //       } else {
+                          //         showDialog(
+                          //           barrierDismissible: false,
+                          //           context: context,
+                          //           builder: (context) => WillPopScope(
+                          //             child: AlertDialog(
+                          //               title: Text("Thông báo"),
+                          //               content: Text("Email hoặc mật khẩu không đúng"),
+                          //               actions: [
+                          //                 Container(
+                          //                   child: ElevatedButton(
+                          //                     onPressed: (){
+                          //                       Navigator.pop(context);
+                          //                     },
+                          //                     child: Text(
+                          //                       'OK',
+                          //                       style: TextStyle(
+                          //                           color: Colors.black,
+                          //                           fontWeight: FontWeight.bold
+                          //                       ),
+                          //                     ),
+                          //                     style: ElevatedButton.styleFrom(
+                          //                         backgroundColor: Colors.yellow
+                          //                     ),
+                          //                   ),
+                          //                 )
+                          //               ],
+                          //             ),
+                          //             onWillPop: () async => false,
+                          //           ),
+                          //         );
+                          //       }
+                          //     });
+                          //   },
+                          //   child: Text(
+                          //     'Đăng nhập',
+                          //     style: TextStyle(
+                          //         fontSize: 20,
+                          //         fontWeight: FontWeight.bold,
+                          //         color: Colors.black87),
+                          //   ),
+                          // )
+
 
                         ),
                         SizedBox(height: 20),

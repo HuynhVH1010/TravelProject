@@ -19,194 +19,400 @@ class Setting extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // return Scaffold(
+    //   body: Obx(
+    //     () =>
+    //     accountController.checklogin.value == true
+    //     ? Obx(() {
+    //   final favoritePosts = locationController.posts.where((post) {
+    //     return accountController.isFavorite(post.id!);
+    //   }).toList();
+    //   return
+    //     Container(
+    //     padding: EdgeInsets.only(left: 15, top: 80, right: 15, bottom: 10),
+    //     color: Colors.white10,
+    //     child: SingleChildScrollView(
+    //       scrollDirection: Axis.vertical,
+    //       child: Column(
+    //         children: [
+    //           Text(
+    //             'Setting',
+    //             style: TextStyle(
+    //                 fontSize: 30,
+    //                 fontWeight: FontWeight.bold,
+    //                 color: Colors.blue
+    //             ),
+    //           ),
+    //           SizedBox(height: 20),
+    //           ListTile(
+    //             onTap: (){
+    //               Get.to(Information());
+    //             },
+    //             shape: OutlineInputBorder(
+    //                 borderRadius: BorderRadius.circular(20)
+    //             ),
+    //             title: const Text('Thông tin người dùng',
+    //               style: TextStyle(
+    //                   fontWeight: FontWeight.bold
+    //               ),
+    //             ),
+    //             subtitle: const Text('Huỳnh Văn Hiếu',
+    //               style: TextStyle(
+    //                   color: Colors.black),
+    //             ),
+    //             leading: Icon(CupertinoIcons.person, color: Colors.black),
+    //             trailing: Icon(Icons.arrow_forward, color: Colors.black),
+    //             tileColor: Colors.white10,
+    //             //tileColor: Colors.blue,
+    //           ),
+    //           const SizedBox(height: 30),
+    //           ListTile(
+    //             onTap: (){
+    //               showDialog(
+    //                 context: context,
+    //                 builder: (context) => AlertDialog(
+    //                   title: Text('Hiện tại chưa có thông báo nào!'),
+    //                   actions: [
+    //                     Container(
+    //                       child: ElevatedButton(
+    //                         onPressed: (){
+    //                           Navigator.pop(context);
+    //                         },
+    //                         child: Text(
+    //                           'OK',
+    //                           style: TextStyle(
+    //                             fontWeight: FontWeight.bold,
+    //                             color: Colors.black,
+    //                           ),
+    //                         ),
+    //                         style: ElevatedButton.styleFrom(
+    //                             alignment: Alignment.center,
+    //                             backgroundColor: Colors.lightBlueAccent,
+    //                             shape: StadiumBorder(),
+    //                             padding: EdgeInsets.symmetric(horizontal: 50,vertical: 15)
+    //                         ),
+    //                       ),
+    //                     ),
+    //                   ],
+    //                 ),
+    //               );
+    //             },
+    //             shape: OutlineInputBorder(
+    //                 borderRadius: BorderRadius.circular(20)
+    //             ),
+    //             title: const Text('Thông báo',
+    //               style: TextStyle(
+    //                   fontWeight: FontWeight.bold
+    //               ),
+    //             ),
+    //             subtitle: const Text('Chưa có thông báo',
+    //               style: TextStyle(
+    //                   color: Colors.black),
+    //             ),
+    //             leading: Icon(CupertinoIcons.bell, color: Colors.black),
+    //             trailing: Icon(Icons.arrow_forward, color: Colors.black),
+    //             tileColor: Colors.white10,
+    //           ),
+    //           const SizedBox(height: 30),
+    //           ListTile(
+    //             shape: OutlineInputBorder(
+    //                 borderRadius: BorderRadius.circular(20)
+    //             ),
+    //             title: const Text('FAQ',
+    //               style: TextStyle(
+    //                   fontWeight: FontWeight.bold
+    //               ),
+    //             ),
+    //             leading: Icon(CupertinoIcons.chat_bubble_text, color: Colors.black),
+    //             trailing: Icon(Icons.arrow_forward, color: Colors.black),
+    //             tileColor: Colors.white10,
+    //           ),
+    //           const SizedBox(height: 30),
+    //           ListTile(
+    //             shape: OutlineInputBorder(
+    //                 borderRadius: BorderRadius.circular(20)
+    //             ),
+    //             title: const Text('Ngôn ngữ',
+    //               style: TextStyle(
+    //                   fontWeight: FontWeight.bold
+    //               ),
+    //             ),
+    //             subtitle: const Text('Tiếng Việt',
+    //               style: TextStyle(
+    //                   color: Colors.black),
+    //             ),
+    //             leading: Icon(Icons.language, color: Colors.black),
+    //             trailing: Icon(Icons.arrow_forward, color: Colors.black),
+    //             tileColor: Colors.white10,
+    //           ),
+    //           const SizedBox(height: 30),
+    //           ListTile(
+    //             shape: OutlineInputBorder(
+    //                 borderRadius: BorderRadius.circular(20)
+    //             ),
+    //             onTap: () {
+    //               showDialog(
+    //                 context: context,
+    //                 builder:  (context) => AlertDialog(
+    //                   title: Text('Bạn muốn đăng xuất?'),
+    //                   actions: [
+    //                     Container(
+    //                       child: ElevatedButton(
+    //                         onPressed: (){
+    //                           Get.to(MyLogin());
+    //                         },
+    //                         child: Text(
+    //                           'Xác nhận',
+    //                           style: TextStyle(
+    //                             fontWeight: FontWeight.bold,
+    //                             color: Colors.black,
+    //                           ),
+    //                         ),
+    //                         style: ElevatedButton.styleFrom(
+    //                             backgroundColor: Colors.lightBlueAccent
+    //                         ),
+    //                       ),
+    //                     ),
+    //                     Container(
+    //                       child: ElevatedButton(
+    //                         onPressed: (){
+    //                           Navigator.pop(context);
+    //                         },
+    //                         child: Text(
+    //                           'Hủy',
+    //                           style: TextStyle(
+    //                             fontWeight: FontWeight.bold,
+    //                             color: Colors.black,
+    //                           ),
+    //                         ),
+    //                         style: ElevatedButton.styleFrom(
+    //                             backgroundColor: Colors.lightBlueAccent
+    //                         ),
+    //                       ),
+    //                     )
+    //
+    //                   ],
+    //                 ),
+    //               );
+    //             },
+    //             title: const Text('Đăng xuất',
+    //               style: TextStyle(
+    //                   fontWeight: FontWeight.bold
+    //               ),
+    //             ),
+    //             // subtitle: const Text('Chưa có thông báo',
+    //             //   style: TextStyle(
+    //             //       color: Colors.black),
+    //             // ),
+    //             leading: Icon(Icons.logout, color: Colors.black),
+    //             trailing: Icon(Icons.arrow_forward, color: Colors.black),
+    //             tileColor: Colors.white10,
+    //
+    //           ),
+    //         ],
+    //       ),
+    //     ),
+    //   );
+    // })
+    //         : Center(child: Text('Please log in to perform this function.')),
+    // ),
+    // );
     return Scaffold(
-      body: Container(
-        padding: EdgeInsets.only(left: 15, top: 80, right: 15, bottom: 10),
-        color: Colors.white10,
-        child: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          child: Column(
-            children: [
-              Text(
-                'Setting',
-                style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.blue
-                ),
-              ),
-              SizedBox(height: 20),
-              ListTile(
-                onTap: (){
-                  Get.to(Information());
-                },
-                shape: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20)
-                ),
-                title: const Text('Thông tin người dùng',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold
-                  ),
-                ),
-                subtitle: const Text('Huỳnh Văn Hiếu',
-                  style: TextStyle(
-                      color: Colors.black),
-                ),
-                leading: Icon(CupertinoIcons.person, color: Colors.black),
-                trailing: Icon(Icons.arrow_forward, color: Colors.black),
-                tileColor: Colors.white10,
-                //tileColor: Colors.blue,
-              ),
-              const SizedBox(height: 30),
-              ListTile(
-                onTap: (){
-                  showDialog(
-                    context: context,
-                    builder: (context) => AlertDialog(
-                      title: Text('Hiện tại chưa có thông báo nào!'),
-                      actions: [
-                        Container(
-                          child: ElevatedButton(
-                            onPressed: (){
-                              Navigator.pop(context);
-                            },
-                            child: Text(
-                              'OK',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black,
-                              ),
-                            ),
-                            style: ElevatedButton.styleFrom(
-                                alignment: Alignment.center,
-                                backgroundColor: Colors.lightBlueAccent,
-                                shape: StadiumBorder(),
-                                padding: EdgeInsets.symmetric(horizontal: 50,vertical: 15)
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  );
-                },
-                shape: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20)
-                ),
-                title: const Text('Thông báo',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold
-                  ),
-                ),
-                subtitle: const Text('Chưa có thông báo',
-                  style: TextStyle(
-                      color: Colors.black),
-                ),
-                leading: Icon(CupertinoIcons.bell, color: Colors.black),
-                trailing: Icon(Icons.arrow_forward, color: Colors.black),
-                tileColor: Colors.white10,
-              ),
-              const SizedBox(height: 30),
-              ListTile(
-                shape: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20)
-                ),
-                title: const Text('FAQ',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold
-                  ),
-                ),
-                leading: Icon(CupertinoIcons.chat_bubble_text, color: Colors.black),
-                trailing: Icon(Icons.arrow_forward, color: Colors.black),
-                tileColor: Colors.white10,
-              ),
-              const SizedBox(height: 30),
-              ListTile(
-                shape: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20)
-                ),
-                title: const Text('Ngôn ngữ',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold
-                  ),
-                ),
-                subtitle: const Text('Tiếng Việt',
-                  style: TextStyle(
-                      color: Colors.black),
-                ),
-                leading: Icon(Icons.language, color: Colors.black),
-                trailing: Icon(Icons.arrow_forward, color: Colors.black),
-                tileColor: Colors.white10,
-              ),
-              const SizedBox(height: 30),
-              ListTile(
-                shape: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20)
-                ),
-                onTap: () {
-                  showDialog(
-                    context: context,
-                    builder:  (context) => AlertDialog(
-                      title: Text('Bạn muốn đăng xuất?'),
-                      actions: [
-                        Container(
-                          child: ElevatedButton(
-                            onPressed: (){
-                              Get.to(MyLogin());
-                            },
-                            child: Text(
-                              'Xác nhận',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black,
-                              ),
-                            ),
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.lightBlueAccent
-                            ),
-                          ),
-                        ),
-                        Container(
-                          child: ElevatedButton(
-                            onPressed: (){
-                              Navigator.pop(context);
-                            },
-                            child: Text(
-                              'Hủy',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black,
-                              ),
-                            ),
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.lightBlueAccent
-                            ),
-                          ),
-                        )
-
-                      ],
-                    ),
-                  );
-                },
-                title: const Text('Đăng xuất',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold
-                  ),
-                ),
-                // subtitle: const Text('Chưa có thông báo',
-                //   style: TextStyle(
-                //       color: Colors.black),
-                // ),
-                leading: Icon(Icons.logout, color: Colors.black),
-                trailing: Icon(Icons.arrow_forward, color: Colors.black),
-                tileColor: Colors.white10,
-
-              ),
-            ],
-          ),
+      appBar: AppBar(
+        title: Text(
+          "Setting",
+          style: TextStyle(fontSize: 30, color: Colors.blue),
         ),
       ),
-    );
+      body:
+             Container(
+              padding: EdgeInsets.only(left: 15, top: 80, right: 15, bottom: 10),
+              color: Colors.white10,
+              child: SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                child: Column(
+                  children: [
+                    // Text(
+                    //   'Setting',
+                    //   style: TextStyle(
+                    //       fontSize: 30,
+                    //       fontWeight: FontWeight.bold,
+                    //       color: Colors.blue
+                    //   ),
+                    // ),
+                    SizedBox(height: 20),
+                    ListTile(
+                      onTap: (){
+                        Get.to(Information());
+                      },
+                      shape: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20)
+                      ),
+                      title: const Text('Thông tin người dùng',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold
+                        ),
+                      ),
+                      subtitle: const Text('Huỳnh Văn Hiếu',
+                        style: TextStyle(
+                            color: Colors.black),
+                      ),
+                      leading: Icon(CupertinoIcons.person, color: Colors.black),
+                      trailing: Icon(Icons.arrow_forward, color: Colors.black),
+                      tileColor: Colors.white10,
+                      //tileColor: Colors.blue,
+                    ),
+                    const SizedBox(height: 30),
+                    ListTile(
+                      onTap: (){
+                        showDialog(
+                          context: context,
+                          builder: (context) => AlertDialog(
+                            title: Text('Hiện tại chưa có thông báo nào!'),
+                            actions: [
+                              Container(
+                                child: ElevatedButton(
+                                  onPressed: (){
+                                    Navigator.pop(context);
+                                  },
+                                  child: Text(
+                                    'OK',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                  style: ElevatedButton.styleFrom(
+                                      alignment: Alignment.center,
+                                      backgroundColor: Colors.lightBlueAccent,
+                                      shape: StadiumBorder(),
+                                      padding: EdgeInsets.symmetric(horizontal: 50,vertical: 15)
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                      shape: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20)
+                      ),
+                      title: const Text('Thông báo',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold
+                        ),
+                      ),
+                      subtitle: const Text('Chưa có thông báo',
+                        style: TextStyle(
+                            color: Colors.black),
+                      ),
+                      leading: Icon(CupertinoIcons.bell, color: Colors.black),
+                      trailing: Icon(Icons.arrow_forward, color: Colors.black),
+                      tileColor: Colors.white10,
+                    ),
+                    const SizedBox(height: 30),
+                    ListTile(
+                      shape: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20)
+                      ),
+                      title: const Text('FAQ',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold
+                        ),
+                      ),
+                      leading: Icon(CupertinoIcons.chat_bubble_text, color: Colors.black),
+                      trailing: Icon(Icons.arrow_forward, color: Colors.black),
+                      tileColor: Colors.white10,
+                    ),
+                    const SizedBox(height: 30),
+                    ListTile(
+                      shape: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20)
+                      ),
+                      title: const Text('Ngôn ngữ',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold
+                        ),
+                      ),
+                      subtitle: const Text('Tiếng Việt',
+                        style: TextStyle(
+                            color: Colors.black),
+                      ),
+                      leading: Icon(Icons.language, color: Colors.black),
+                      trailing: Icon(Icons.arrow_forward, color: Colors.black),
+                      tileColor: Colors.white10,
+                    ),
+                    const SizedBox(height: 30),
+                    ListTile(
+                      shape: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20)
+                      ),
+                      onTap: () {
+                        showDialog(
+                          context: context,
+                          builder:  (context) => AlertDialog(
+                            title: Text('Bạn muốn đăng xuất?'),
+                            actions: [
+                              Container(
+                                child: ElevatedButton(
+                                  onPressed: (){
+                                    Get.to(MyLogin());
+                                  },
+                                  child: Text(
+                                    'Xác nhận',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                  style: ElevatedButton.styleFrom(
+                                      backgroundColor: Colors.lightBlueAccent
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                child: ElevatedButton(
+                                  onPressed: (){
+                                    Navigator.pop(context);
+                                  },
+                                  child: Text(
+                                    'Hủy',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                  style: ElevatedButton.styleFrom(
+                                      backgroundColor: Colors.lightBlueAccent
+                                  ),
+                                ),
+                              )
+        
+                            ],
+                          ),
+                        );
+                      },
+                      title: const Text('Đăng xuất',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold
+                        ),
+                      ),
+                      // subtitle: const Text('Chưa có thông báo',
+                      //   style: TextStyle(
+                      //       color: Colors.black),
+                      // ),
+                      leading: Icon(Icons.logout, color: Colors.black),
+                      trailing: Icon(Icons.arrow_forward, color: Colors.black),
+                      tileColor: Colors.white10,
+        
+                    ),
+                  ],
+                ),
+              ),
+            )
 
+
+    );
   }
 }
 
