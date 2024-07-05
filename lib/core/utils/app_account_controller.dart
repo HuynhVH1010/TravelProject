@@ -15,9 +15,13 @@ class AccountController extends GetxController {
   RxList<Account> favoriteResults = RxList<Account>();
   RxString idAccount = ''.obs;
   RxString username = ''.obs;
+  RxString email = ''.obs;
   RxString id = ''.obs;
   RxString sex = ''.obs;
   RxString phonenumber = ''.obs;
+  RxBool checkreg = false.obs;
+  RxString imageUser = ''.obs;
+
   var schedule = <Schedule>[].obs;
   var favorite = <String>[].obs;
   // var schedule = Schedule(
@@ -65,15 +69,25 @@ class AccountController extends GetxController {
     print(checklogin.value);
   }
 
-  Future<void> getAccount(String UserName) async {
+  // }void ChangeLogin() {
+  //   checklogin.value = true;
+  //   print(checklogin.value);
+  // }
+  void changeReg() {
+    checkreg.value = !checkreg.value;
+    print("checkreg: ${checkreg.value}");
+  }
+
+  Future<void> getAccount(String userEmail) async {
     isLoading.value = true;
     try {
-      await dataServices().GetAccount(UserName);
+      await dataServices().GetAccount(userEmail);
       print("ten User: ${username.value}");
       print("phonenumber: ${phonenumber.value}");
       print("Id: ${id}");
       print("Favorite: ${favorite}");
       print("Schedule: ${schedule}");
+      print("ImageUser: ${imageUser}");
     } catch (e) {
       print('Error fetching Accounts: $e');
     } finally {
@@ -121,12 +135,12 @@ class AccountController extends GetxController {
     }
   }
 
-  Future<void> CreateUser(String username, String password, String email,
-      String phonenumber, String sex) async {
+  Future<void> CreateUser(String fullname, String password, String email,
+      String phonenumber, String sex, String imageUser) async {
     isLoading.value = true;
     try {
       await dataServices()
-          .CreateUser(username, password, email, phonenumber, sex);
+          .CreateUser(fullname, email, password, phonenumber, sex, imageUser);
 
       print("Schedule create successfully");
     } catch (e) {
@@ -149,26 +163,53 @@ class AccountController extends GetxController {
       isLoading.value = false;
     }
   }
-  // Future<void> fetchUserById(String userId) async {
-  //   try {
-  //     final response = await http
-  //         .get(Uri.parse('https://664784812bb946cf2f9e0700.mockapi.io/user'));
-  //     if (response.statusCode == 200) {
-  //       var jsonResponse = json.decode(response.body) as List;
-  //       var user = jsonResponse
-  //           .map((item) => Account.fromJson(item))
-  //           .firstWhere((user) => user.id == userId);
 
-  //       id.value = user.id!;
-  //       username.value = user.username!;
-  //       sex.value = user.sex!;
-  //       phonenumber.value = user.phonenumber!;
-  //       favorite.value = user.favorite ?? [];
-  //     } else {
-  //       print("Failed to load users");
-  //     }
-  //   } catch (e) {
-  //     print("Error: $e");
-  //   }
-  // }
+  Future<void> UpdateUser(
+      String id, String username, String sex, String phonenumber) async {
+    isLoading.value = true;
+    try {
+      await dataServices().UpdateUser(id, username, sex, phonenumber);
+      // await getPosts(); // Fetch the updated list of postsz
+      print("User updated successfully");
+    } catch (e) {
+      print('Error updating title: $e');
+    } finally {
+      isLoading.value = false;
+    }
+  }
+
+  Future<void> updateImageUser(String id, String imageUser) async {
+    isLoading.value = true;
+    try {
+      await dataServices().updateImageUser(id, imageUser);
+      // await getPosts(); // Fetch the updated list of postsz
+      print("ImageUser updated successfully");
+    } catch (e) {
+      print('Error updating title: $e');
+    } finally {
+      isLoading.value = false;
+    }
+  }
+// Future<void> fetchUserById(String userId) async {
+//   try {
+//     final response = await http
+//         .get(Uri.parse('https://664784812bb946cf2f9e0700.mockapi.io/user'));
+//     if (response.statusCode == 200) {
+//       var jsonResponse = json.decode(response.body) as List;
+//       var user = jsonResponse
+//           .map((item) => Account.fromJson(item))
+//           .firstWhere((user) => user.id == userId);
+
+//       id.value = user.id!;
+//       username.value = user.username!;
+//       sex.value = user.sex!;
+//       phonenumber.value = user.phonenumber!;
+//       favorite.value = user.favorite ?? [];
+//     } else {
+//       print("Failed to load users");
+//     }
+//   } catch (e) {
+//     print("Error: $e");
+//   }
+// }
 }

@@ -64,7 +64,7 @@ class Profile extends StatelessWidget {
                     fontWeight: FontWeight.bold
                   ),
                 ),
-                subtitle: const Text('Huỳnh Văn Hiếu',
+                subtitle: const Text('Chưa có thông tin',
                   style: TextStyle(
                       color: Colors.black),
                 ),

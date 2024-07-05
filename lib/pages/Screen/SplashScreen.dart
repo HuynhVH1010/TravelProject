@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:travel/pages/Screen/LoginManlam.dart';
 import 'package:travel/pages/Screen/Plane.dart';
 import 'package:travel/pages/dashboard/dashboard_page.dart';
+import 'package:travel/pages/login.dart';
 
 class MySplash extends StatefulWidget {
   const MySplash({super.key});
@@ -21,7 +22,7 @@ class _MySplashState extends State<MySplash> {
   void initState() {
     super.initState();
     Timer(Duration(seconds: 5), () {
-      Get.to(MyLogin());
+      Get.to(LoginPage());
     });
   }
 

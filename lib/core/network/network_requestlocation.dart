@@ -22,19 +22,19 @@ class NetworkRequest {
   static List<Account> parseAccount(String responseBody) {
     var list = json.decode(responseBody) as List<dynamic>;
     List<Account> accounts =
-        list.map((model) => Account.fromJson(model)).toList();
+    list.map((model) => Account.fromJson(model)).toList();
     return accounts;
   }
 
-  // static Future<List<Post>> fetchPosts({int page = 1}) async {
-  //   final response = await http.get(Uri.parse(url));
-  //   if (response.statusCode == 200) {
-  //     return compute(parsePost, response.body);
-  //   } else if (response.statusCode == 404) {
-  //     throw Exception("Not found");
-  //   } else
-  //     throw Exception('Can\'t get post');
-  // }
+// static Future<List<Post>> fetchPosts({int page = 1}) async {
+//   final response = await http.get(Uri.parse(url));
+//   if (response.statusCode == 200) {
+//     return compute(parsePost, response.body);
+//   } else if (response.statusCode == 404) {
+//     throw Exception("Not found");
+//   } else
+//     throw Exception('Can\'t get post');
+// }
 }
 
 class dataServices {
@@ -54,14 +54,14 @@ class dataServices {
   String accountToJson(List<Account> data) =>
       json.encode(List<dynamic>.from(data.map((e) => e.toJson())));
   var urlAccount =
-      Uri.parse('https://664784812bb946cf2f9e0700.mockapi.io/user');
+  Uri.parse('https://664784812bb946cf2f9e0700.mockapi.io/user');
 
   Future<List<Account>> getAccounts() async {
     var response = await http.get(urlAccount);
     return accountFromJson(response.body);
   }
 
-  Future<void> GetAccount(String userName) async {
+  Future<void> GetAccount(String userEmail) async {
     final AccountController accountController = Get.put(AccountController());
     try {
       final response = await http
@@ -70,7 +70,7 @@ class dataServices {
         var jsonResponse = json.decode(response.body) as List;
         var user = jsonResponse
             .map((item) => Account.fromJson(item))
-            .firstWhere((user) => user.username == userName);
+            .firstWhere((user) => user.email == userEmail);
 
         accountController.id.value = user.id!;
         accountController.username.value = user.username!;
@@ -78,6 +78,8 @@ class dataServices {
         accountController.phonenumber.value = user.phonenumber!;
         accountController.favorite.value = user.favorite ?? [];
         accountController.schedule.value = user.schedule ?? [];
+        accountController.email.value = user.email!;
+        accountController.imageUser.value = user.imageUser!;
       } else {
         print("Failed to load users");
       }
@@ -319,19 +321,20 @@ class dataServices {
     }
   }
 
-  Future<void> CreateUser(String username, String password, String email,
-      String phonenumber, String sex) async {
+  Future<void> CreateUser(String fullname, String password, String email,
+      String phonenumber, String sex, String imageUser) async {
     var response = await http.post(
       Uri.parse(AccountUrl),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
       body: jsonEncode(<String, String>{
-        'username': username,
-        'password': password,
+        'username': fullname,
         'email': email,
+        'password': password,
         'phonenumber': phonenumber,
         'sex': sex,
+        'imageUser': imageUser
       }),
     );
 
@@ -342,6 +345,51 @@ class dataServices {
       print('Failed to create Account: ${response.statusCode}');
       print('Response body: ${response.body}');
       throw Exception("Failed to create Account");
+    }
+  }
+
+  Future<void> UpdateUser(
+      String id, String username, String sex, String phonenumber) async {
+    var response = await http.put(
+      Uri.parse(AccountUrl + "/" + id),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{
+        'username': username,
+        'sex': sex,
+        'phonenumber': phonenumber,
+      }),
+    );
+
+    if (response.statusCode == 200) {
+      print('Update successful');
+      return;
+    } else {
+      print('Failed to update post: ${response.statusCode}');
+      print('Response body: ${response.body}');
+      throw Exception("Failed to update post");
+    }
+  }
+
+  Future<void> updateImageUser(String id, String imageUser) async {
+    var response = await http.put(
+      Uri.parse(AccountUrl + "/" + id),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{
+        'imageUser': imageUser,
+      }),
+    );
+
+    if (response.statusCode == 200) {
+      print('Update Image successful');
+      return;
+    } else {
+      print('Failed to update post: ${response.statusCode}');
+      print('Response body: ${response.body}');
+      throw Exception("Failed to update post");
     }
   }
 }

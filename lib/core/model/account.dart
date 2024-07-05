@@ -7,17 +7,17 @@ class Account {
   String? email;
   String? sex;
   List<Schedule>? schedule;
-
-  Account({
-    this.id,
-    this.username,
-    this.password,
-    this.phonenumber,
-    this.favorite,
-    this.email,
-    this.sex,
-    this.schedule,
-  });
+  String? imageUser;
+  Account(
+      {this.id,
+        this.username,
+        this.password,
+        this.phonenumber,
+        this.favorite,
+        this.email,
+        this.sex,
+        this.schedule,
+        this.imageUser});
 
   Account.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -33,6 +33,7 @@ class Account {
         schedule!.add(Schedule.fromJson(v));
       });
     }
+    imageUser = json['imageUser'];
   }
 
   Map<String, dynamic> toJson() {
@@ -47,6 +48,7 @@ class Account {
     if (schedule != null) {
       data['schedule'] = schedule!.map((v) => v.toJson()).toList();
     }
+    data['imageUser'] = imageUser;
     return data;
   }
 }

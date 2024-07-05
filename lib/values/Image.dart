@@ -5,6 +5,7 @@ class AppAssets {
   static final String dainoi = imagePath + 'dainoi.png';
   static final String langkhaidinh = imagePath + 'langkhaidinh.png';
   static final String vinhhalong = imagePath + 'vinhhalong.png';
+  static final String imageUser = imagePath + 'userAvatar.jpg';
 
   static final String location = imagePath + 'location.svg';
 }

@@ -25,7 +25,7 @@ abstract class AppPages {
   static final List<GetPage<dynamic>> pages = <GetPage<dynamic>>[
     GetPage<DashboardPage>(
       name: Routes.DASHBOARD,
-      page: () => MySplash(),
+      page: () => DashboardPage(),
       binding: DashboardBinding(),
       participatesInRootNavigator: true,
       transition: Transition.noTransition,
