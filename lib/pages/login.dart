@@ -48,7 +48,7 @@ class _LoginPageState extends State<LoginPage> {
               onPressed: () {
                 Navigator.pop(context); // Đóng dialog
               },
-              child: Text("Ok"),
+              child: Text("ok"),
             ),
           ],
         ),
